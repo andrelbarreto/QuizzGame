@@ -16,7 +16,7 @@
 
 .choice-prefix {
   padding: 1.5rem 2.5rem;
-  background-color: #56a5eb;
+  background-color: #393cff;
   color: white;
 }
 
@@ -44,7 +44,10 @@
   text-align: center;
   font-size: 2rem;
 }
-
+.hud-prefix1 {
+  text-align: right;
+  font-size: 2rem;
+}
 .hud-main-text {
   text-align: center;
 }
@@ -52,13 +55,14 @@
 #progressBar {
   width: 20rem;
   height: 4rem;
+  background-color: #062c4e;
   border: 0.3rem solid #56a5eb;
   margin-top: 1.5rem;
 }
 
 #progressBarFull {
   height: 3.4rem;
-  background-color: #56a5eb;
+  background-color: #1084e9;
   width: 0%;
 }
 
@@ -66,7 +70,7 @@
 #loader {
   border: 1.6rem solid white;
   border-radius: 50%;
-  border-top: 1.6rem solid #56a5eb;
+  border-top: 1.6rem solid #062c4e;
   width: 12rem;
   height: 12rem;
   animation: spin 2s linear infinite;
