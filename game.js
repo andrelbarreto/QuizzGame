@@ -52,6 +52,8 @@ fetch(
 const CORRECT_BONUS = 5;
 const MAX_QUESTIONS = 10;
 
+
+//object to start the game
 startGame = () => {
   questionCounter = 0;
   score = 0;
@@ -74,9 +76,9 @@ var downloadTimer = setInterval(function(){
   }
 }, 1000);  */
 
+// Function to return formattedseconds for display as it counts down seconds
 
-
-TimerText.value = 60;
+TimerText.value = 75;
 var secondsElapsed = 0;
 
 function getFormattedSeconds() {
@@ -121,7 +123,8 @@ getNewQuestion = () => {
 setInterval(function () {
   timer = TimerText.value--;
   TimerText.innerText = timer;
-  if (timer == 0) {
+  if (timer <= 0) {
+    alert('Time out!')
     return;
   }
   timer = getFormattedSeconds();
@@ -133,23 +136,31 @@ setInterval(function () {
       acceptingAnswers = false;
       const selectedChoice = e.target;
       const selectedAnswer = selectedChoice.dataset["number"];
+        const classToApply =
 
-      const classToApply =
-        selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
-
+// if classtoapply is correct, points are added, if incorrect 3 secs are discounted from clock;       
+     
+       selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+  
       if (classToApply === "correct") {
         incrementScore(CORRECT_BONUS);
       }
-
+  
+  
+      if(classToApply === "incorrect"){
+  
+          timer = timer - 3;
+          TimerText.innerText = timer;
+      }
       selectedChoice.parentElement.classList.add(classToApply);
-
-
+  
+   
       // check for time out   
       setTimeout(() => {
         selectedChoice.parentElement.classList.remove(classToApply);
         getNewQuestion();
         if (timer <= 0) {
-          clearInterval();
+          clearInterval(timer);
           localStorage.setItem("mostRecentScore", score);
           //go to the end page
           return window.location.assign("end.html");
@@ -164,3 +175,16 @@ setInterval(function () {
     scoreText.innerText = score;
   };
 }, 1000)
+
+/*Timer
+var timeleft = 75;
+var downloadTimer = setInterval(function(){
+  document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+  timeleft -= 1;
+  if(timeleft < 0){
+    clearInterval(downloadTimer);
+    window.location.assign("end.html")
+  }
+}, 1000);
+
+//startGame();  */
